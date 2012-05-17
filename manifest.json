@@ -1,0 +1,6 @@
+{
+  "name": "Chromesass",
+  "version": "0.1",
+  "description": "Chrome Developer Tools Extension for Sass",
+  "manifest_version": 2
+}
