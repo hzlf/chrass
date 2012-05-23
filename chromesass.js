@@ -16,6 +16,7 @@ chrome.devtools.inspectedWindow.getResources(setupSassSidebar);
  */
 function setupSassSidebar(resources) {
   var cssResources = findCssResources(resources);
+  findSassResources(cssResources);
 }
 
 /**
@@ -31,4 +32,23 @@ function findCssResources(resources) {
     }
   }
   return cssResources;
+}
+
+/**
+ * Read the css file content and try to find saas debugging information
+ */
+function findSassResources(cssResources) {
+  var sassResources = [];
+  var resourcesParsed = 0;
+  for (var i=0;i<cssResources.length;i++) {
+    cssResources[i].getContent(function (content) {
+      if (content.search('-sass-debug-info') > 0) {
+        sassResources.push(cssResources[i]);
+      }
+      resourcesParsed = resourcesParsed + 1;
+      if (resourcesParsed === cssResources.length) {
+          // Completed parsing of all css resources
+      }
+    });
+  }
 }
