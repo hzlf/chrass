@@ -49,6 +49,13 @@ function findSassResources(cssResources) {
             resourcesParsed = resourcesParsed + 1;
             if (resourcesParsed === cssResources.length) {
                 // Completed parsing of all css resources
+                if (sassResources.length > 0) {
+                    chrome.devtools.panels.elements.createSidebarPane("Saas", function(sidebar) {
+                        // on version 0.1 we display a static page indicating
+                        // sass has been found
+                        sidebar.setPage("saasfound.html");
+                    });
+                }
             }
         });
     }
