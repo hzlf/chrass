@@ -2,7 +2,6 @@
 // © Copyright 2012 Carlos Quiroz. All rights reserved.
 // All trademarks and service marks are the properties of their respective owners.
 //
-
 /**
  * Function called when the extension is installed for the first time
  */
@@ -47,3 +46,17 @@ if (chrome && chrome.extension) {
     }
 }
 
+// Install a request listener as the devtools page cannot see the actual DOM
+// of the page
+chrome.extension.onRequest.addListener(function(request, sender, callback) {
+    var tabId = request.tabId;
+
+    // Execute the script on the context of the inspected page
+    chrome.tabs.executeScript(tabId, { file: "sasscontent.js" },
+      function() {
+          chrome.tabs.sendRequest(tabId, {},
+          function(results) {
+              callback(results);
+          });
+      });
+});

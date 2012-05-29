@@ -8,5 +8,10 @@
   "background" : {
     "scripts": [
       "background.js"]
-  }
+  },
+  "permissions" :  [
+    "tabs",
+    "http://*/*",
+    "https://*/*"
+  ]
 }
