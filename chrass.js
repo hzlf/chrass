@@ -63,11 +63,11 @@ function findSassResources(cssResources) {
 /**
  * Creates the sidebar
  */
-function buildSidebar(contents) {
-    chrome.devtools.panels.elements.createSidebarPane("Saas", function(sidebar) {
-        // on version 0.1 we display a static page indicating
+function buildSidebar(pageContents) {
+    chrome.devtools.panels.elements.createSidebarPane("SASS", function(sidebar) {
+        // on version 0.2 we display a page containing all found sass styles
         // sass has been found
-        sidebar.setObject(contents);
+        sidebar.setObject(pageContents);
     });
 }
 
