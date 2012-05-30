@@ -61,13 +61,56 @@ function findSassResources(cssResources) {
 }
 
 /**
+ * Functions that is called using evaluation and returns a JSON element
+ * that is displayed on the sidebar
+ *
+ * As the function is evaluated as a string it cannot call other functions on
+ * the file
+ */
+var pageFindSassInfo = function(element) {
+    // $0 contains the element selected
+    var data = $0;
+    var sassValues = JSON.parse(element);
+    // Make a shallow copy with a null prototype, so that sidebar does not
+    // expose prototype.
+    var props = Object.getOwnPropertyNames(data);
+    var copy = {
+        __proto__: null
+    };
+    var saas = {
+        __proto__: null
+    };
+    for (var i = 0; i < props.length; ++i) {
+        if (props[i] === "className") {
+            // This is too limited, cannot assume that the elements in css
+            // start with a dot
+            var className = '.' + data[props[i]];
+            if (typeof sassValues[className] != 'undefined') {
+                saas['file'] = sassValues[className]['filename'];
+                saas['linenum'] = sassValues[className]['linenum'];
+                copy[className] = saas;
+            }
+        }
+    }
+    return copy;
+}
+
+/**
  * Creates the sidebar
  */
 function buildSidebar(pageContents) {
     chrome.devtools.panels.elements.createSidebarPane("SASS", function(sidebar) {
         // on version 0.2 we display a page containing all found sass styles
         // sass has been found
-        sidebar.setObject(pageContents);
+        function updateElementProperties() {
+            // The expression is a function text where we pass the parameter
+            // and it is executed in the context of the elements panel
+            // The page contents need to be passed as a string and re-parsed
+            // inside
+            var expression = "(" + pageFindSassInfo.toString() + ")('" + JSON.stringify(pageContents) + "');";
+            sidebar.setExpression(expression);
+        }
+        chrome.devtools.panels.elements.onSelectionChanged.addListener(updateElementProperties);
     });
 }
 
