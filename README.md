@@ -13,7 +13,7 @@ it will show the filename and line number for that element.
 
 This is shown in the screenshot below
 
-![Screenshot](./docs/version0_2.png)
+![Screenshot](https://github.com/hzlf/chromesass/raw/master/docs/version0_2.png)
 
 Support is still fairly limited but should be able to detect the basic case of an element with a sass class.
 
