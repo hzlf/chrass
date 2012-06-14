@@ -77,18 +77,22 @@ var pageFindSassInfo = function(element) {
     var copy = {
         __proto__: null
     };
-    var saas = {
+    var sass = {
         __proto__: null
     };
     var rules = window.getMatchedCSSRules(data, '')
     console.log('-- find matches for element ' + data + ' ------ ');
     for (var j = 0;j<rules.length;j++) {
         if (typeof sassValues[rules[j].selectorText] != 'undefined') {
-            console.log('sass match ' + sassValues[rules[j].selectorText]['filename']);
+            var className = rules[j].selectorText;
+            sass['file'] = sassValues[className]['filename'];
+            sass['linenum'] = sassValues[className]['linenum'];
+            console.log('sass match ' + sassValues[className]['linenum']);
+            copy[className] = sass;
         }
     }
     console.log('----------------------------------------------- ');
-    for (var i = 0; i < props.length; ++i) {
+    /*for (var i = 0; i < props.length; ++i) {
         if (props[i] === "className") {
             // This is too limited, cannot assume that the elements in css
             // start with a dot
@@ -99,7 +103,7 @@ var pageFindSassInfo = function(element) {
                 copy[className] = saas;
             }
         }
-    }
+    }*/
     return copy;
 }
 
