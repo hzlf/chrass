@@ -81,17 +81,18 @@ var pageFindSassInfo = function(element) {
         __proto__: null
     };
     var rules = window.getMatchedCSSRules(data, '')
-    console.log('-- find matches for element ' + data + ' ------ ');
+    //console.log('-- find matches for element ' + data + ' ------ ');
     for (var j = 0;j<rules.length;j++) {
         if (typeof sassValues[rules[j].selectorText] != 'undefined') {
             var className = rules[j].selectorText;
             sass['file'] = sassValues[className]['filename'];
             sass['linenum'] = sassValues[className]['linenum'];
-            console.log('sass match ' + sassValues[className]['linenum']);
-            copy[className] = sass;
+            var fileSynth = sassValues[className]['filename'].replace(/^.*[\\\/]/, '') + ':' + sassValues[className]['linenum'];
+            console.log('sass match ' + fileSynth);
+            copy[className] = fileSynth;
         }
     }
-    console.log('----------------------------------------------- ');
+    //console.log('----------------------------------------------- ');
     /*for (var i = 0; i < props.length; ++i) {
         if (props[i] === "className") {
             // This is too limited, cannot assume that the elements in css
