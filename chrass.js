@@ -83,7 +83,9 @@ var pageFindSassInfo = function(element) {
     var rules = window.getMatchedCSSRules(data, '')
     console.log('-- find matches for element ' + data + ' ------ ');
     for (var j = 0;j<rules.length;j++) {
-        console.log(rules[j].cssText);
+        if (typeof sassValues[rules[j].selectorText] != 'undefined') {
+            console.log('sass match ' + sassValues[rules[j].selectorText]['filename']);
+        }
     }
     console.log('----------------------------------------------- ');
     for (var i = 0; i < props.length; ++i) {
