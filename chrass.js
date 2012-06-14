@@ -80,6 +80,12 @@ var pageFindSassInfo = function(element) {
     var saas = {
         __proto__: null
     };
+    var rules = window.getMatchedCSSRules(data, '')
+    console.log('-- find matches for element ' + data + ' ------ ');
+    for (var j = 0;j<rules.length;j++) {
+        console.log(rules[j].cssText);
+    }
+    console.log('----------------------------------------------- ');
     for (var i = 0; i < props.length; ++i) {
         if (props[i] === "className") {
             // This is too limited, cannot assume that the elements in css
