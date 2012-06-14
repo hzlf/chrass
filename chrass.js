@@ -46,11 +46,11 @@ function findSassResources(cssResources) {
             if (content.search('-sass-debug-info') > 0) {
                 sassResources.push(cssResources[i]);
             }
-
             resourcesParsed = resourcesParsed + 1;
             if (resourcesParsed === cssResources.length) {
                 // Completed parsing of all css resources
                 if (sassResources.length > 0) {
+
                     chrome.extension.sendRequest({ tabId: tabId }, function(results) {
                         buildSidebar(results);
                     });

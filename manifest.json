@@ -1,21 +1,16 @@
 {
-  "name": "chrass",
-  "version": "0.3",
-  "description": "Chrome Developer Tools Extension for Sass",
-  "manifest_version": 2,
-  "minimum_chrome_version": "18.0",
-  "devtools_page": "devtools.html",
-  "icons": { "16": "images/sass16.png",
-             "48": "images/sass48.png",
-             "128": "images/sass128.png" },
-  "background" : {
-    "scripts": [
-      "background.js"]
-  },
-  "permissions" :  [
-    "tabs",
-    "http://*/*",
-    "https://*/*",
-    "file://*"
-  ]
+   "background": {
+      "scripts": [ "background.js" ]
+   },
+   "description": "Chrome Developer Tools Extension for Sass",
+   "devtools_page": "devtools.html",
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC51EZv4AbbqSq7jS4bgsc4hlS+W6OIXdPVQLIcntrQsFoh7lnQQtEm9Wvmj1sF4SCK1+1QJefRqGFZzk+swaMp8JC0ezn/LsDBb/AWgo4yQaaIa0IHipBCZJD6Z5nu8Y/+xD2v+Cje70geJkPEUpp+HFGFSd7t8DlPR/sm8bfD4QIDAQAB",
+   "manifest_version": 2,
+   "minimum_chrome_version": "18.0",
+   "name": "chrass",
+   "permissions": [ "tabs", "http://*/*", "https://*/*", "file://*" ],
+   "icons": { "16": "images/sass16.png",
+              "48": "images/sass48.png",
+              "128": "images/sass128.png" },
+   "version": "0.3"
 }
