@@ -4,6 +4,20 @@ chrass
 Change Log
 ----------
 
+## Version 0.3
+This release makes the sidebar to display the sass debug information when an
+item using sass is selected.
+
+The displayed data is synthesized from the filename and the matching
+line number. Only the actual file name is displayed though the sass data
+includes the full path.
+
+![Screenshot](https://github.com/hzlf/chrass/raw/master/docs/version0_3.png)
+
+** Note: ** Due to the security restrictions on Chrome the extension will work
+only on html files served remotely. This is the same issue that affects Firebug
+lite described ![here](http://getfirebug.com/wiki/index.php/Firebug_Lite_FAQ#It_doesn.27t_work_on_local_pages)
+
 ## Version 0.2
 This release provides a sidebar that interacts with the elements tree.
 
