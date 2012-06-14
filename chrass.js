@@ -77,34 +77,21 @@ var pageFindSassInfo = function(element) {
     var copy = {
         __proto__: null
     };
-    var sass = {
-        __proto__: null
-    };
+    // Extract the matched css rules
     var rules = window.getMatchedCSSRules(data, '')
-    //console.log('-- find matches for element ' + data + ' ------ ');
     for (var j = 0;j<rules.length;j++) {
+        // If some of the rules matches a sass debug info add it to the content
+        // of the sidebar
         if (typeof sassValues[rules[j].selectorText] != 'undefined') {
             var className = rules[j].selectorText;
-            sass['file'] = sassValues[className]['filename'];
-            sass['linenum'] = sassValues[className]['linenum'];
-            var fileSynth = sassValues[className]['filename'].replace(/^.*[\\\/]/, '') + ':' + sassValues[className]['linenum'];
-            console.log('sass match ' + fileSynth);
-            copy[className] = fileSynth;
+            // use only the file name, not the full path
+            var fileName = sassValues[className]['filename'].replace(/^.*[\\\/]/, ''); 
+            var linenum = sassValues[className]['linenum'];
+            // Get the debug info in the form of filename:linenum
+            var sassDebug =  fileName + ':' + linenum;
+            copy[className] = sassDebug;
         }
     }
-    //console.log('----------------------------------------------- ');
-    /*for (var i = 0; i < props.length; ++i) {
-        if (props[i] === "className") {
-            // This is too limited, cannot assume that the elements in css
-            // start with a dot
-            var className = '.' + data[props[i]];
-            if (typeof sassValues[className] != 'undefined') {
-                saas['file'] = sassValues[className]['filename'];
-                saas['linenum'] = sassValues[className]['linenum'];
-                copy[className] = saas;
-            }
-        }
-    }*/
     return copy;
 }
 
