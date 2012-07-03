@@ -3,6 +3,12 @@ chrass
 
 Change Log
 ----------
+## Version 0.3.1
+Fixed a bug when a style contains a quote ("). The quote would throw the JSON
+object created to contain the stylesheets descriptor.
+
+Also added better error handling and incorporated suggestions provided by
+JSLint.
 
 ## Version 0.3
 This release makes the sidebar to display the sass debug information when an
