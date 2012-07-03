@@ -3,6 +3,10 @@ chrass
 
 Change Log
 ----------
+## Version 0.3.2
+Improvements: If multiple class are matched for an element, show one per line.
+
+
 ## Version 0.3.1
 Fixed a bug when a style contains a quote ("). The quote would throw the JSON
 object created to contain the stylesheets descriptor.
