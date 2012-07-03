@@ -1,6 +1,9 @@
 // © Copyright 2012 Carlos Quiroz. All rights reserved.
 // All trademarks and service marks are the properties of their respective owners.
 //
+
+"use strict";
+
 function getSassDebugInfo() {
     var sassDefinitions = {};
     var allSheets = document.styleSheets;
@@ -22,14 +25,6 @@ function getSassDebugInfo() {
                     }
                 }
             }
-            console.log(sassDefinitions);
-            var count = 0;
-            for (var k in sassDefinitions) {
-                if (sassDefinitions.hasOwnProperty(k)) {
-                   ++count;
-                }
-            }
-            console.log(count);
         }
     }
     return sassDefinitions;
@@ -38,11 +33,10 @@ function getSassDebugInfo() {
 // This is a trick needed to register the listener only once
 // otherwise we end up with multiple registrations if the developer tools
 // are open and closed many times
-if (typeof listener == 'undefined') {
+if (typeof sassListener == 'undefined') {
     chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
         sendResponse(getSassDebugInfo());
     });
 }
 
-var listener = true;
-
+var sassListener = true;

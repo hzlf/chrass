@@ -1,6 +1,9 @@
 //
 // © Copyright 2012 Carlos Quiroz. All rights reserved.
 // All trademarks and service marks are the properties of their respective owners.
+
+"use strict";
+
 //
 // This script is called when the devtools are opened
 // We first try to detect if the inspected page contains a css file
@@ -84,8 +87,8 @@ var pageFindSassInfo = function(element) {
                 if (typeof sassValues[rules[j].selectorText] !== 'undefined') {
                     var className = rules[j].selectorText;
                     // use only the file name, not the full path
-                    var fileName = sassValues[className]['filename'].replace(/^.*[\\\/]/, '');
-                    var linenum = sassValues[className]['linenum'];
+                    var fileName = sassValues[className].filename.replace(/^.*[\\\/]/, '');
+                    var linenum = sassValues[className].linenum;
                     // Get the debug info in the form of filename:linenum
                     var sassDebug =  fileName + ':' + linenum;
                     copy[className] = sassDebug;
