@@ -86,12 +86,18 @@ var pageFindSassInfo = function(element) {
                 // of the sidebar
                 if (typeof sassValues[rules[j].selectorText] !== 'undefined') {
                     var className = rules[j].selectorText;
-                    // use only the file name, not the full path
-                    var fileName = sassValues[className].filename.replace(/^.*[\\\/]/, '');
-                    var linenum = sassValues[className].linenum;
-                    // Get the debug info in the form of filename:linenum
-                    var sassDebug =  fileName + ':' + linenum;
-                    copy[className] = sassDebug;
+                    // Divide using commas to show only one matching class per
+                    // line
+                    var splittedClass = className.split(", ");
+                    for (var k = 0;k<splittedClass.length;k++) {
+                        // use only the file name, not the full path
+                        var fileName = sassValues[className].filename.replace(/^.*[\\\/]/, '');
+                        var linenum = sassValues[className].linenum;
+                        // Get the debug info in the form of filename:linenum
+                        var sassDebug =  fileName + ':' + linenum;
+                        //copy[className] = sassDebug;
+                        copy[splittedClass[k]] = sassDebug;
+                    }
                 }
             }
         }
